@@ -383,7 +383,7 @@ $ showparts
 ~~~
 {: .language-bash}
 
-![showparts example output](../figs/showparts.png)
+![showparts example output](../fig/showparts.png)
 
 Green is used to indicate a full node is available within the parititon, yellow
 to indicate available cores, and gray to indicate total allocation.
