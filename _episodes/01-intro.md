@@ -118,7 +118,7 @@ $ ls
 {: .language-bash}
 
 ~~~
-perl5/
+perl5/ Desktop/
 ~~~
 {: .output}
 
@@ -126,8 +126,7 @@ New users on Agave will likely see only the `perl5/` directory as output
 when running `ls` for the first time. This is a default directory
 generated for the user which should not be used directly by the user.
 More experienced users may have already created directories, such as
-`Desktop/` or `Research/`, which would be listed with the above command
-as well.
+`Research/`, which would be listed with the above command as well.
 
 > ## Command not found
 > If the shell can't find a program whose name is the command you typed,
