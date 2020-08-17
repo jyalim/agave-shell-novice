@@ -10,7 +10,7 @@
 carpentry: "swc"
 
 # Overall title for pages.
-title: "The Unix Shell"
+title: "The Agave Linux Shell"
 
 
 #------------------------------------------------------------
@@ -23,10 +23,10 @@ kind: "lesson"
 # Magic to make URLs resolve both locally and on GitHub.
 # See https://help.github.com/articles/repository-metadata-on-github-pages/.
 # Please don't change it: <USERNAME>/<PROJECT> is correct.
-repository: <USERNAME>/<PROJECT>
+repository: jyalim/agave-shell-novice
 
 # Email address, no mailto:
-email: "team@carpentries.org"
+email: "yalim@asu.edu"
 
 # Sites.
 amy_site: "https://amy.software-carpentry.org/workshops"
@@ -46,12 +46,12 @@ workshop_repo: "https://github.com/carpentries/workshop-template"
 workshop_site: "https://carpentries.github.io/workshop-template"
 
 # Surveys.
-pre_survey: "https://www.surveymonkey.com/r/swc_pre_workshop_v1?workshop_id="
-post_survey: "https://www.surveymonkey.com/r/swc_post_workshop_v1?workshop_id="
-training_post_survey: "https://www.surveymonkey.com/r/post-instructor-training"
+pre_survey: ""
+post_survey: "https://forms.gle/K4HEovMFt93rqUvk6"
+training_post_survey: "https://forms.gle/K4HEovMFt93rqUvk6"
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
-start_time: 0
+start_time: 900
 
 # Specify that things in the episodes collection should be output.
 collections:
