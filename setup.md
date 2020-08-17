@@ -5,7 +5,7 @@ root: .
 ---
 
 There are several ways to get a shell on the Agave cluster. The
-recommended way for novices is to use the [Open Ondemand webapp][ood]
+recommended way for novices is to use the [Open Ondemand webapp](https://login.rc.asu.edu)
 first, as it is operating system independent (the browser Chrome is
 recommended, followed by Brave or Firefox). Those that are feeling more
 confident may gain a shell on the cluster through other means, such as
@@ -15,23 +15,19 @@ Once on Agave and within a shell, you'll need to download some files to
 follow the lesson.  Below are instructions that will be covered during
 the lesson.
 
-1. Download [data-shell.zip]({{ page.root }}/data/data-shell.zip) and move the file to your Desktop. This can be done using `wget`:  
-
-```
-$ mkdir ~/Desktop  
-$ cd ~/Desktop  
-$ wget https://github.com/jyalim/agave-shell-novice/raw/gh-pages/data/data-shell.zip    
-```
+1. Download [data-shell.zip]({{ page.root }}/data/data-shell.zip) and move the file to your Desktop. This can be done using `wget`.  
    Ask: how did I get the link for the required zip?
 2. Unzip/extract the file.   
-
-```
-$ unzip data-shell.zip   
-```
    You should end up with a new folder called **data-shell** on your
    Desktop.
 
-In the lesson, you will find out how to access the data in this folder.
+~~~
+$ mkdir ~/Desktop  
+$ cd ~/Desktop  
+$ wget https://github.com/jyalim/agave-shell-novice/raw/gh-pages/data/data-shell.zip    
+$ unzip data-shell.zip   
+~~~
+{: .language-bash}
 
 > ## What does the shell look like on my computer?
 > The shell is a program that enables us to send commands to the

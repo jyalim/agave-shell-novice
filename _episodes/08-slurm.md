@@ -389,3 +389,13 @@ Green is used to indicate a full node is available within the parititon, yellow
 to indicate available cores, and gray to indicate total allocation.
 
 Another useful resource is the [cluster status page](https://rcstatus.asu.edu/agave/smallstatus.php).
+
+> ## Cancelling jobs
+>
+> The SLURM command `scancel` is one of the more important scheduler commands
+> to know. In its simpliest application, you may pass the job ids you'd like to
+> cancel, e.g. `scancel 4967966`. However, `scancel` can accept options to
+> cancel all jobs associated with username, partitions, qos, state,and more.
+> For instance, if issued by an admin or the user, `scancel -u jyalim` would
+> cancel all jobs associated with that user. See `man scancel`.
+{: .callout}
