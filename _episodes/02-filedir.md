@@ -70,31 +70,33 @@ which is `rcjdoeuser`'s **home directory**:
 
 To understand what a 'home directory' is, let's have a look at how the
 file system as a whole is organized.  For the sake of this example,
-we'll be illustrating the filesystem on our scientist Nelle's computer.
-After this illustration, you'll be learning commands to explore your own
-filesystem, which will be constructed in a similar way, but not be
-exactly identical.
+we'll be illustrating the filesystem through `rcjdoesuser`'s view of
+Agave.  After this illustration, you'll be learning commands to explore
+your own filesystem, which will be constructed in a similar way, but not
+be exactly identical.
 
 In `rcjdoeuser`'s view, the filesystem looks like this:
 
 ![The file system is made up of a root directory that contains sub-directories
-titled bin, data, users, and tmp](../fig/filesystem-agave.png)
+titled bin, data, home, scratch, packages, and tmp](../fig/filesystem-agave.png)
 
-At the top is the **root directory** that holds everything else.
-We refer to it using a slash character, `/`, on its own;
-this is the leading slash in `/Users/nelle`.
+At the top is the **root directory** that holds everything else.  We
+refer to it using a slash character, `/`, on its own;
+this is the leading slash in `/home/rcjdoeuser`.
 
-Inside that directory are several other directories:
-`bin` (which is where some built-in programs are stored),
-`data` (for miscellaneous data files),
-`Users` (where users' personal directories are located),
-`tmp` (for temporary files that don't need to be stored long-term),
+Inside that directory are several other directories (just sampling):
+  - `bin` (which is where some built-in programs are stored, especially those used by a system on startup),
+  - `home` (where default 100 GB user directories live)
+  - `scratch` (where additional user directories live, provided for "scratch computing")
+  - `data` (for project-based storage, provided at $50 per TB per year),
+  - `tmp` (typically for temporary files that do not need to be stored
+          long-term, but we ask that you avoid this directory when possible),
+  - `packages` (where all the installed software on Agave lives)
 and so on.
 
-We know that our current working directory `/Users/nelle` is stored inside `/Users`
-because `/Users` is the first part of its name.
-Similarly,
-we know that `/Users` is stored inside the root directory `/`
+We know that our current working directory `/home/rcjdoeuser` is stored
+inside `/home` because `/home` is the first part of its name.
+Similarly, we know that `/home` is stored inside the root directory `/`
 because its name begins with `/`.
 
 > ## Slashes
@@ -105,18 +107,19 @@ because its name begins with `/`.
 > it's just a separator.
 {: .callout}
 
-Underneath `/Users`,
-we find one directory for each user with an account on Nelle's machine,
-her colleagues *imhotep* and *larry*.
+Underneath `/home`, we find one directory for each user with an account
+on Agave, our colleagues *riley* and *feynman*. Note that Agave has
+thousands of users, but only those who have recently signed into your
+login node will have their `/home` directory also visible.
 
 ![Home Directories](../fig/filesystem-agave-home.png)
 
-The user *imhotep*'s files are stored in `/Users/imhotep`,
-user *larry*'s in `/Users/larry`,
-and Nelle's in `/Users/nelle`.  Because Nelle is the user in our
-examples here, this is why we get `/Users/nelle` as our home directory.
-Typically, when you open a new command prompt you will be in
-your home directory to start.
+The researcher *riley*'s files are stored in `/home/riley`,
+researcher *feynman*'s in `/home/feynman`, and rcjdoeuser's in
+`/home/rcjdoeuser`.  Because rcjdoeuser is the user in our examples
+here, this is why we get `/home/rcjdoeuser` as our home directory.
+Typically, when you open a new command prompt you will be in your home
+directory to start, which is **aliased** as `~` for convenience.
 
 Now let's learn the command that will let us see the contents of our
 own filesystem.  We can see what's in our home directory by running `ls`:
@@ -127,8 +130,7 @@ $ ls
 {: .language-bash}
 
 ~~~
-Applications Documents    Library      Music        Public
-Desktop      Downloads    Movies       Pictures
+perl5/ Desktop/
 ~~~
 {: .output}
 
@@ -144,20 +146,24 @@ by adding a marker to file and directory names to indicate what they are:
 - `@` indicates a link
 - `*` indicates an executable
 
-Depending on your default options,
-the shell might also use colors to indicate whether each entry is a file or
-directory.
+Depending on your default options, the shell might also use colors to
+indicate whether each entry is a file or directory. Also, depending on
+the system `ls` may not be vanilla, and itself may be **aliased**. To
+see, use the Bash builtin command `type`:
 
 ~~~
-$ ls -F
+$ type ls
 ~~~
 {: .language-bash}
 
 ~~~
-Applications/ Documents/    Library/      Music/        Public/
-Desktop/      Downloads/    Movies/       Pictures/
+ls is aliased to `/bin/ls -F --color=auto`
 ~~~
 {: .output}
+
+That is, on Agave, `ls` is already passing the `-F` option to the
+program, `ls`, and coloring the output thanks to the `--color=auto`
+option.
 
 > ## Clearing your terminal
 >
@@ -166,10 +172,9 @@ Desktop/      Downloads/    Movies/       Pictures/
 > and <kbd>↓</kbd> to move line-by-line, or by scrolling in your terminal.
 {: .callout}
 
-Here,
-we can see that our home directory contains only **sub-directories**.
-Any names in your output that don't have a classification symbol,
-are plain old **files**.
+Here, we can see that our home directory contains only
+**sub-directories**.  Any names in your output that don't have a
+classification symbol, are plain old **files**.
 
 
 ## General syntax of a shell command
@@ -177,23 +182,34 @@ Consider the command below as a general example of a command,
 which we will dissect into its component parts:
 
 ~~~
-$ ls -F /
+$ ls -l Desktop/data-shell
+total 56
+drwxr-xr-x 2 rcjdoeuser rcjdoeuser  1536 Aug  7  2019 creatures/
+drwxr-xr-x 5 rcjdoeuser rcjdoeuser  4608 Aug  7  2019 data/
+drwxr-xr-x 2 rcjdoeuser rcjdoeuser  3072 Aug  7  2019 molecules/
+drwxr-xr-x 3 rcjdoeuser rcjdoeuser   512 Aug  7  2019 north-pacific-gyre/
+-rw-r--r-- 1 rcjdoeuser rcjdoeuser    86 Aug  7  2019 notes.txt
+-rw-r--r-- 1 rcjdoeuser rcjdoeuser    32 Aug  7  2019 pizza.cfg
+-rw-r--r-- 1 rcjdoeuser rcjdoeuser 21583 Aug  7  2019 solar.pdf
+drwxr-xr-x 5 rcjdoeuser rcjdoeuser  2048 Aug  7  2019 writing/
 ~~~
 {: .language-bash}
 
 
-`ls` is the **command**, with an **option** `-F` and an
-**argument** `/`.
-We've already encountered options (also called **switches** or **flags**) which
-either start with a single dash (`-`) or two dashes (`--`), and they change the behaviour of a command.
-Arguments tell the command what to operate on (e.g. files and directories).
-Sometimes options and arguments are referred to as **parameters**.
-A command can be called with more than one option and more than one argument: but a
-command doesn't always require an argument or an option.
+`ls` is the **command**, with an **option** `-l` and an
+**argument** `Desktop/data-shell`.  We've already encountered options (also
+called **switches** or **flags**) which either start with a single dash (`-`)
+or two dashes (`--`), and they change the behaviour of a command.  Arguments
+tell the command what to operate on (e.g. files and directories).  Sometimes
+options and arguments are referred to as **parameters**.  A command can be
+called with more than one option and more than one argument: but a command
+doesn't always require an argument or an option.
 
-Each part is separated by spaces: if you omit the space
-between `ls` and `-F` the shell will look for a command called `ls-F`, which
-doesn't exist. Also, capitalization can be important. For example, `ls -s` will display the size of files and directories alongside the names, while `ls -S` will sort the files and directories by size, as shown below:
+Each part is separated by spaces: if you omit the space between `ls` and `-l`
+the shell will look for a command called `ls-l`, which doesn't exist. Also,
+capitalization can be important. For example, `ls -s` will display the size of
+files and directories alongside the names, while `ls -S` will sort the files
+and directories by size, as shown below:
 
 ~~~
 $ ls -s Desktop/data-shell/data
@@ -207,20 +223,36 @@ planets.txt  elements       morse.txt  animals.txt
 {: .output}
 
 Putting all that together, our command above gives us a listing
-of files and directories in the root directory `/`.
-An example of the output you might get from the above command is given below:
+of files and directories in the root directory `~/Desktop/data-shell`. An
+example is provided below, illustrating the *long listing* provided by the `-l`
+option. This prints additional columnar information for each record in the
+filesystem, including permissions, number of records associated with the
+filesystem entry (i.e. number of subdirectories or files within a directory),
+the Linux user that owns the record, the Linux group that owns the record, the
+size of the record in bytes, and the date the record was last modified. The
+first line indicating a total reports the number of 512-byte blocks used by the
+files in the directory.
 
 ~~~
-$ ls -F /
+$ ls -l Desktop/data-shell
 ~~~
 {: .language-bash}
 
 ~~~
-Applications/         System/
-Library/              Users/
-Network/              Volumes/
+total 56
+drwxr-xr-x 2 rcjdoeuser rcjdoeuser  1536 Aug  7  2019 creatures/
+drwxr-xr-x 5 rcjdoeuser rcjdoeuser  4608 Aug  7  2019 data/
+drwxr-xr-x 2 rcjdoeuser rcjdoeuser  3072 Aug  7  2019 molecules/
+drwxr-xr-x 3 rcjdoeuser rcjdoeuser   512 Aug  7  2019 north-pacific-gyre/
+-rw-r--r-- 1 rcjdoeuser rcjdoeuser    86 Aug  7  2019 notes.txt
+-rw-r--r-- 1 rcjdoeuser rcjdoeuser    32 Aug  7  2019 pizza.cfg
+-rw-r--r-- 1 rcjdoeuser rcjdoeuser 21583 Aug  7  2019 solar.pdf
+drwxr-xr-x 5 rcjdoeuser rcjdoeuser  2048 Aug  7  2019 writing/
 ~~~
 {: .output}
+
+If this seems like a lot of information to remember or know you're not
+mistaken. Luckily, Linux comes with a builtin documentation system.
 
 ### Getting help
 
