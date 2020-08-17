@@ -319,8 +319,7 @@ Submitted batch job 4967966
 
 The **job id** that `sbatch` reports is a unique integer associated with your
 job. This job id may be used to track the status of the job in the queue with a
-variety of commands, such as `myjobs` or even more specifically `thisjob
-<jobid>`:
+variety of commands, such as `myjobs` or even more specifically `thisjob <jobid>`:
 
 ~~~
 $ thisjob 4967966
