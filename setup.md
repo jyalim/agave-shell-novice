@@ -15,12 +15,12 @@ Once on Agave and within a shell, you'll need to download some files to
 follow the lesson.  Below are instructions that will be covered during
 the lesson.
 
-1. Download [data-shell.zip]({{ page.root }}/data/data-shell.zip) and move the file to your Desktop. This can be done using `wget`:
+1. Download [data-shell.zip]({{ page.root }}/data/data-shell.zip) and move the file to your Desktop. This can be done using `wget`:  
     $ mkdir ~/Desktop
     $ cd ~/Desktop
-    $ wget https://github.com/jyalim/agave-shell-novice/raw/gh-pages/data/data-shell.zip
+    $ wget https://github.com/jyalim/agave-shell-novice/raw/gh-pages/data/data-shell.zip  
    Ask: how did I get the link for the required zip?
-2. Unzip/extract the file. 
+2. Unzip/extract the file.   
     $ unzip data-shell.zip 
    You should end up with a new folder called **data-shell** on your
    Desktop.
