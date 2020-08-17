@@ -27,5 +27,5 @@ plt.grid(which='major',color='#999999',linestyle='--')
 plt.grid(which='minor',color='#999999',linestyle=':')
 plt.xlabel('Frequency',fontsize=28)
 plt.ylabel('Relative Power',fontsize=28)
-plt.savefig('fft.png')
+plt.savefig('fft.png',bbox_inches='tight')
 
