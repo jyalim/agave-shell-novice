@@ -78,7 +78,7 @@ exactly identical.
 In `rcjdoeuser`'s view, the filesystem looks like this:
 
 ![The file system is made up of a root directory that contains sub-directories
-titled bin, data, users, and tmp](../fig/filesystem.svg)
+titled bin, data, users, and tmp](../fig/filesystem-agave.png)
 
 At the top is the **root directory** that holds everything else.
 We refer to it using a slash character, `/`, on its own;
@@ -109,7 +109,7 @@ Underneath `/Users`,
 we find one directory for each user with an account on Nelle's machine,
 her colleagues *imhotep* and *larry*.
 
-![Home Directories](../fig/home-directories.svg)
+![Home Directories](../fig/filesystem-agave-home.png)
 
 The user *imhotep*'s files are stored in `/Users/imhotep`,
 user *larry*'s in `/Users/larry`,
