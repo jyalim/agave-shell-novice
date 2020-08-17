@@ -145,3 +145,96 @@ executable and its libraries are found by the shell first:
 > to the software you are interested in by adding it as an additional argument,
 > e.g. `module avail matlab`.
 {: .callout}
+
+So far, everything we have done has been on a head node, e.g. `agave1`. The
+head node is provided mostly for managing compute rather than actively
+computing. On the head node, you are limited to a small set of actions, such as
+managing the file system, compiling software, or editing software. The main
+purpose of the node is to prepare, submit, and track work conducted through the
+SLURM scheduler. One of the simplest ways to actually get to a full compute
+environment is to use the system administrator provided command: `interactive`.
+
+~~~
+$ cd ~/Desktop/data-shell/signal
+$ interactive -t 15
+~~~
+{: .language-bash}
+
+Note that the `-t 15` option is passed to `interactive` to decrease the
+potential pending time for this interactive session. By default, `interactive`
+will request 1 core for four hours on one of Agave's nodes within the serial
+partition. To increase the likelihood of being immediately scheduled, we can
+decrease the time being asked for to something more practical for this
+exercise, such as 15 minutes, which is what `-t 15` specifically does! When the
+above `interactive -t 15` command is submitted, you'll see some fortune text
+(some piece of wisdom passed on from system administration), before your
+session connects. Once the interactive job begins on a compute node, you'll be
+automatically connected. Your prompt should reflect this, changing from 
+`[username@head_node_hostname:~/Desktop/data-shell/signal]$` to
+`[username@compute_node_hostname:~/Desktop/data-shell/signal]$`. In this
+example, `rcjdoeuser` was scheduled on `cg31-1`. To explore this compute node,
+consider the following commands:
+
+~~~
+$ hostname # prints the compute node's hostname
+$ nproc    # prints the number of processors (cores) available
+$ free -h  # shows the amount of RAM available and its use on the node in
+           # human readable format
+$ pwd      # prints the working (current) directory
+$ lscpu    # prints more detailed information about the cpu hardware
+~~~
+{: .language-bash}
+
+~~~
+cg31-1.agave.rc.asu.edu 
+1
+              total        used        free      shared  buff/cache   available
+Mem:           187G         27G         77G        1.8G         82G        157G
+Swap:           31G         16G         15G
+/home/rcjdoeuser/Desktop/data-shell/signal
+Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                48
+On-line CPU(s) list:   0-47
+Thread(s) per core:    1
+Core(s) per socket:    24
+Socket(s):             2
+NUMA node(s):          4
+Vendor ID:             GenuineIntel
+CPU family:            6
+Model:                 85
+Model name:            Intel(R) Xeon(R) Gold 6252 CPU @ 2.10GHz
+Stepping:              7
+CPU MHz:               3386.224
+CPU max MHz:           3700.0000
+CPU min MHz:           1000.0000
+BogoMIPS:              4200.00
+Virtualization:        VT-x
+L1d cache:             32K
+L1i cache:             32K
+L2 cache:              1024K
+L3 cache:              36608K
+NUMA node0 CPU(s):     0,4,8,12,16,20,24,28,32,36,40,44
+NUMA node1 CPU(s):     1,5,9,13,17,21,25,29,33,37,41,45
+NUMA node2 CPU(s):     2,6,10,14,18,22,26,30,34,38,42,46
+NUMA node3 CPU(s):     3,7,11,15,19,23,27,31,35,39,43,47
+Flags:                 fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch epb cat_l3 cdp_l3 invpcid_single intel_ppin intel_pt ssbd mba ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm cqm mpx rdt_a avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local dtherm ida arat pln pts pku ospke avx512_vnni md_clear spec_ctrl intel_stibp flush_l1d arch_capabilities
+~~~
+{: .output}
+
+Let's run the python `fft` script from this interactive session. All we need to
+do is set up the appropriate environment and run the script.
+
+~~~
+$ module purge               # reset the environment 
+$ module load anaconda/py3   # reset the environment 
+$ python get_fft.py          # run the python code
+$ mail -a fft.png -s "FFT RESULTS" "${USER}@asu.edu" <<< "SEE ATTACHED"
+~~~
+{: .language-bash}
+
+The result is `fft.png`, demonstrating the expecting Fourier spectra of the
+triangle wave:
+
+![DFT of the triangle wave](../data-shell/signal/fft.png)
