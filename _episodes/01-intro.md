@@ -99,8 +99,10 @@ indicating that the shell is waiting for input.
 This **prompt** is conveying a bit of information as it waits for user
 input. In the square brackets are the username `rcjdoeuser`, the
 head node's **hostname** `agave1`, and the current directory the shell
-is residing in `~` (`/home/rcjdoeuser`). Typically a `$` is used as a
-prompt suffix to indicate a Bash shell as a non-admin user.
+is residing in `~` (`/home/rcjdoeuser`). The `@` is used to delimit (or
+separate) the username from the hostname, and the `:` is used to delimit
+the hostname from the current filesystem path.  Typically a `$` is used
+as a prompt suffix to indicate a Bash shell as a non-admin user.
 
 For simplicity, in the examples for this lesson, we'll truncate the prompt
 to `$ ` to indicate shell commands.  Most importantly: when typing
@@ -128,8 +130,8 @@ More experienced users may have already created directories, such as
 as well.
 
 > ## Command not found
-> If the shell can't find a program whose name is the command you typed, it
-> will print an error message such as:
+> If the shell can't find a program whose name is the command you typed,
+> it will print an error message such as:
 >
 > ~~~
 > $ ks
