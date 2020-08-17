@@ -1,7 +1,7 @@
 ---
 title: "Using the Scheduler"
 teaching: 30
-exercises: 0
+exercises: 1
 questions:
 - "How can I run an interactive session on a compute node?"
 - "How can I load the software that I need?"
@@ -51,7 +51,7 @@ In this example, we will be working with some time series data,
 specifically that associated with a [triangle wave](https://en.wikipedia.org/wiki/Triangle_wave).
 The time series `signal.png` is shown below:
 
-![Time series of the example triangle wave](data-shell/signal/signal.png)
+![Time series of the example triangle wave](../data-shell/signal/signal.png)
 
 The data associated with this triangle wave is included in `signal.dat`,
 and the first ten lines will be outputted to the terminal with `head`:
