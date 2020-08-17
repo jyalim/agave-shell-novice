@@ -6,7 +6,7 @@
 #SBATCH -e signal_processing_job.%j.err
 #SBATCH -o signal_processing_job.%j.out
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=jyalim+agave+cli+example@asu.edu
+#SBATCH --mail-user=$USER+agave+cli+example@asu.edu
 
 # Grab node information if desired (note a lot of this is recorded by
 # slurm already)

@@ -238,3 +238,155 @@ The result is `fft.png`, demonstrating the expecting Fourier spectra of the
 triangle wave:
 
 ![DFT of the triangle wave](../data-shell/signal/fft.png)
+
+
+> ## The interactive command
+>
+> The command `interactive` is really a bash wrapper around SLURM's provided
+> scheduler command ,`sbatch`. On Agave, `interactive` has the following defaults:
+> - partition: `serial`
+> - qos: `normal`
+> - walltime: `0-4` (4 hours)
+> - cores: 1
+> - output: `/dev/null` (output messages are thrown away)
+> - error: `/dev/null` (error messages are thrown away)
+> The defaults, as indicated, may be customized by passing the appropriate
+> `sbatch` options. A full list may be obtained through the manual page: `man
+> sbatch`, but a few common ones are indicated here:
+> - specify `serial` partition: `-p serial`
+> - specify `normal` qos: `-q normal`
+> - specify one hour wall time: `-t 0-1` or `-t 60` or many other ways
+> - specify four cores: `-c 4`
+> - specify output file:  `-o <path>`
+> - specify error  file:  `-e <path>`
+> This will be examined in more detail in the `sbatch` section.
+{: .callout}
+
+After a while of getting comfortable with interactive sessions, you may find
+yourself wishing there was a way to automate your actions. The good news is
+that your workflow is likely fully scriptable, and that it just requires a bit
+of scheduler wrapping to successful batch process. We will use the previous
+example to demonstrate with the file `data-shell/signal/my_signal_processing_job.sh`, which contains:
+
+~~~
+#!/bin/bash
+#SBATCH -p serial
+#SBATCH -q normal
+#SBATCH -t 5
+#SBATCH -c 1
+#SBATCH -e signal_processing_job.%j.err
+#SBATCH -o signal_processing_job.%j.out
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=$USER+agave+cli+example@asu.edu
+
+# Grab node information if desired (note a lot of this is recorded by
+# slurm already)
+echo hostname: $(hostname)
+echo    nproc: $(nproc)
+echo     free: $(free -h)
+echo      pwd: $(pwd)
+# Purge any loaded modules to ensure consistent working environment
+module purge
+# Load required software
+module load anaconda/py3
+# Diagnostic information
+module list
+which python
+# Put bash into a diagnostic mode that prints commands
+set -x
+# Starting
+echo STARTED: $(date)
+# Run scientific workflow
+python get_fft.py
+# Send output figure to researcher email
+mail -a fft.png -s "fft complete" "${USER}@asu.edu" <<< "SEE ATTACHED
+# Finished
+echo FINISHED: $(date)
+~~~
+{: .language-bash}
+
+To submit this job, use `sbatch` (submitted as user `jyalim`):
+
+~~~
+$ sbatch my_signal_processing_job.sh
+~~~
+{: .language-bash}
+
+~~~
+Submitted batch job 4967966
+~~~
+{: .output}
+
+The **job id** that `sbatch` reports is a unique integer associated with your
+job. This job id may be used to track the status of the job in the queue with a
+variety of commands, such as `myjobs` or even more specifically `thisjob
+<jobid>`:
+
+~~~
+$ thisjob 4967966
+~~~
+{: .language-bash}
+
+~~~
+JOBID      PARTITION NAME               USER           STATE        TIME         TIME_LIMIT   CPUS  NODELIST(REASON)
+4967966    serial    my_signal_processi jyalim         PENDING      0:00         5:00         1     (Priority)
+
+JobId=4967966 JobName=my_signal_processing_job.sh
+   UserId=jyalim(513649) GroupId=jyalim(513649) MCS_label=N/A
+   Priority=77096 Nice=0 Account=jyalim QOS=normal WCKey=*
+   JobState=PENDING Reason=Priority Dependency=(null)
+   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:00:00 TimeLimit=00:05:00 TimeMin=N/A
+   SubmitTime=2020-08-17T14:42:06 EligibleTime=2020-08-17T14:42:06
+   AccrueTime=2020-08-17T14:42:06
+   StartTime=Unknown EndTime=Unknown Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2020-08-17T14:42:06
+   Partition=serial AllocNode:Sid=agave3:95946
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=(null)
+   NumNodes=1 NumCPUs=1 NumTasks=1 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   TRES=cpu=1,mem=4594M,node=1,billing=1
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=1 MinMemoryCPU=4594M MinTmpDiskNode=0
+   Features=GenCPU DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/home/jyalim/.local/src/hellabyte/agave-shell-novice/data-shell/signal/my_signal_processing_job.sh
+   WorkDir=/home/jyalim/.local/src/hellabyte/agave-shell-novice/data-shell/signal
+   StdErr=/home/jyalim/.local/src/hellabyte/agave-shell-novice/data-shell/signal/signal_processing_job.4967966.err
+   StdIn=/dev/null
+   StdOut=/home/jyalim/.local/src/hellabyte/agave-shell-novice/data-shell/signal/signal_processing_job.4967966.out
+   Switches=1@1-00:00:00
+   Power=
+~~~
+{: .output}
+
+The command `myjobs` is an admin provided wrapper around SLURM's `squeue`, which outputs information about only your jobs:
+
+~~~
+$ myjobs
+~~~
+{: .language-bash}
+
+~~~
+JOBID      PARTITION NAME               USER           STATE        TIME         TIME_LIMIT   CPUS  NODELIST(REASON)
+4967966    serial    my_signal_processi jyalim         PENDING      0:00         5:00         1     (Priority)
+~~~
+{: .output}
+
+Note that `myjobs` is roughly equivalent to `squeue -u $USER` (the formatted
+outputs are different).
+
+When scheduling jobs, it can be useful to gauge the activity on the cluster's
+various partitions. The command `showparts` will provide a quick color-coded overview of partition status:
+
+~~~
+$ showparts
+~~~
+{: .language-bash}
+
+![showparts example output](../figs/showparts.png)
+
+Green is used to indicate a full node is available within the parititon, yellow
+to indicate available cores, and gray to indicate total allocation.
+
+Another useful resource is the [cluster status page](https://rcstatus.asu.edu/agave/smallstatus.php).
