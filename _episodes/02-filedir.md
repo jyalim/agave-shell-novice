@@ -3,9 +3,9 @@ title: "Navigating Files and Directories"
 teaching: 30
 exercises: 10
 questions:
-- "How can I move around on my computer?"
+- "How can I move around on Agave?"
 - "How can I see what files and directories I have?"
-- "How can I specify the location of a file or directory on my computer?"
+- "How can I specify the location of a file or directory on Agave?"
 objectives:
 - "Explain the similarities and differences between a file and a directory."
 - "Translate an absolute path into a relative path and vice versa."
@@ -24,24 +24,26 @@ keypoints:
 - "An absolute path specifies a location from the root of the file system."
 - "Directory names in a path are separated with `/` on Unix, but `\\` on Windows."
 - "`..` means 'the directory above the current one'; `.` on its own means 'the current directory'."
+- "On Agave, users have two main working spaces: `/home/username` and
+  `/scratch/username`"
 ---
 
-The part of the operating system responsible for managing files and directories
-is called the **file system**.
-It organizes our data into files,
-which hold information,
-and directories (also called 'folders'),
+The part of the operating system responsible for managing files and
+directories is called the **file system**.  It organizes our data into
+files, which hold information, and directories (also called 'folders'),
 which hold files or other directories.
 
-Several commands are frequently used to create, inspect, rename, and delete files and directories.
-To start exploring them, we'll go to our open shell window.
+Several commands are frequently used to create, inspect, rename, and
+delete files and directories.  To start exploring them, we'll go to our
+open shell window.
 
 First let's find out where we are by running a command called `pwd`
-(which stands for 'print working directory'). Directories are like *places* - at any time
-while we are using the shell we are in exactly one place, called
-our **current working directory**. Commands mostly read and write files in the
-current working directory, i.e. 'here', so knowing where you are before running
-a command is important. `pwd` shows you where you are:
+(which stands for 'print working directory'). Directories are like
+*places* - at any time while we are using the shell we are in exactly
+one place, called our **current working directory**. Commands mostly
+read and write files in the current working directory, i.e. 'here', so
+knowing where you are before running a command is important. `pwd` shows
+you where you are:
 
 ~~~
 $ pwd
@@ -49,39 +51,36 @@ $ pwd
 {: .language-bash}
 
 ~~~
-/Users/nelle
+/home/rcjdoeuser
 ~~~
 {: .output}
 
-Here,
-the computer's response is `/Users/nelle`,
-which is Nelle's **home directory**:
+Here, the computer's response is `/home/rcjdoeuser`,
+which is `rcjdoeuser`'s **home directory**:
 
 > ## Home Directory Variation
 >
-> The home directory path will look different on different operating systems.
-> On Linux it may look like `/home/nelle`,
-> and on Windows it will be similar to `C:\Documents and Settings\nelle` or
-> `C:\Users\nelle`.
-> (Note that it may look slightly different for different versions of Windows.)
-> In future examples, we've used Mac output as the default - Linux and Windows
-> output may differ slightly, but should be generally similar.
+> The home directory path will look different on different operating
+> systems. For a user `riley`: on Linux it may look like `/home/riley`,
+> on MacOS it may look like `/Users/riley`, and on Windows it will be
+> similar to `C:\Documents and Settings\riley` or `C:\Users\riley`.
+> (Note that it may look slightly different for different versions of
+> Windows.) We've used Agave (Linux) output as the default.
 {: .callout}
 
-To understand what a 'home directory' is,
-let's have a look at how the file system as a whole is organized.  For the
-sake of this example, we'll be
-illustrating the filesystem on our scientist Nelle's computer.  After this
-illustration, you'll be learning commands to explore your own filesystem,
-which will be constructed in a similar way, but not be exactly identical.
+To understand what a 'home directory' is, let's have a look at how the
+file system as a whole is organized.  For the sake of this example,
+we'll be illustrating the filesystem on our scientist Nelle's computer.
+After this illustration, you'll be learning commands to explore your own
+filesystem, which will be constructed in a similar way, but not be
+exactly identical.
 
-On Nelle's computer, the filesystem looks like this:
+In `rcjdoeuser`'s view, the filesystem looks like this:
 
 ![The file system is made up of a root directory that contains sub-directories
 titled bin, data, users, and tmp](../fig/filesystem.svg)
 
-At the top is the **root directory**
-that holds everything else.
+At the top is the **root directory** that holds everything else.
 We refer to it using a slash character, `/`, on its own;
 this is the leading slash in `/Users/nelle`.
 
