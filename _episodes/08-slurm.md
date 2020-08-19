@@ -1,7 +1,7 @@
 ---
 title: "Using the Scheduler"
 teaching: 30
-exercises: 1
+exercises: 15
 questions:
 - "How can I run an interactive session on a compute node?"
 - "How can I load the software that I need?"
