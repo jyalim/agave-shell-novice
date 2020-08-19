@@ -18,7 +18,7 @@ objectives:
 keypoints:
 - "The module system keeps the cluster environment adaptive to each researcher."
 - "Interactive sessions are useful for debugging or active job monitoring, e.g. `htop`."
-- "Using the scheduler to submit scripts through `sbatch` is an ultimate scaling goal""
+- "Using the scheduler to submit scripts through `sbatch` is an ultimate scaling goal"
 - "Many commands are provided to aide the researcher, e.g. `myjobs`, `showparts`, or `interactive`"
 ---
 
