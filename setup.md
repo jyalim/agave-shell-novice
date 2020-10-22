@@ -17,9 +17,12 @@ in check:
    access the cluster through the "Cisco" Virtual Private Network (Cisco
    VPN). If you are unfamiliar with the process, please visit
    [sslvpn.asu.edu](https://sslvpn.asu.edu), which will guide you
-   through the installation process of the necessary software. *Note:
-   if you are accessing the supercomputer from the ASU network you will
-   not explicitly need the VPN*.
+   through the installation process of the necessary software. Once the
+   software is installed and running, it will prompt you for a
+   webaddress, specify [sslvpn.asu.edu/2fa](sslvpn.asu.edu/2fa) and
+   proceed through the steps. *Note: if you are accessing the
+   supercomputer from the ASU network you will not explicitly need the
+   VPN*.
 3. With an account created and the VPN running, you should now have
    access to the cluster. From the Windows 10 command prompt or MacOS or
    Linux terminal you should be able to connect to the cluster with
