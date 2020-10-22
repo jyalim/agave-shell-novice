@@ -4,12 +4,48 @@ title: Setup
 root: .
 ---
 
-There are several ways to get a shell on the Agave cluster. The
-recommended way for novices is to use the [Open Ondemand webapp](https://login.rc.asu.edu)
-first, as it is operating system independent (the browser Chrome is
-recommended, followed by Brave or Firefox). Those that are feeling more
-confident may gain a shell on the cluster through other means, such as
-an `ssh` session via a terminal.
+## Preliminary 
+Before obtaining a shell on the Agave cluster, several items must be
+in check:
+
+1. Make sure you have an account on the cluster. If you have not
+   already, please fill out an [account request](https://cores.research.asu.edu/research-computing/get-started/create-an-account)
+   with your faculty sponsor listed (faculty may list themselves as
+   sponsors).
+2. Upon receiving a confirmation email of account activation, you will
+   have the ability to connect to the cluster. However, you may only
+   access the cluster through the "Cisco" Virtual Private Network (Cisco
+   VPN). If you are unfamiliar with the process, please visit
+   [sslvpn.asu.edu](https://sslvpn.asu.edu), which will guide you
+   through the installation process of the necessary software. *Note:
+   if you are accessing the supercomputer from the ASU network you will
+   not explicitly need the VPN*.
+3. With an account created and the VPN running, you should now have
+   access to the cluster. From the Windows 10 command prompt or MacOS or
+   Linux terminal you should be able to connect to the cluster with
+   the shell command: `ssh <asurite>@agave.asu.edu`, where `<asurite>`
+   is a placeholder for *your* asurite username. This method is the
+   traditional way of obtaining a shell on the supercomputer!
+
+## I have access, now what?
+
+The recommended way to learn how to use the supercomputer and gain
+access to a cluster shell is through the [Open Ondemand
+webapp](https://login.rc.asu.edu). This webapp is maintained by the
+[Ohio Supercomputing Center](https://openondemand.org/) and is actively
+funded by the National Science Foundation. The webapp is operating
+system (OS) independent (the browser Chrome is recommended, followed by
+Brave or Firefox), and supplants a number of OS-dependent applications
+that would have been necessary to interact with the supercomputer
+otherwise. To obtain the shell through the [Open OnDemand
+webapp](https://login.rc.asu.edu), find the `Clusters` tab within the
+navigation bar at the top of the webpage, and from the submenu, select
+`>_ Agave Shell Access`.
+Those that are feeling more confident may gain a shell on the
+cluster through other means, such as an `ssh` session via a terminal, as
+indicated in step 3 in the previous section.
+
+## Workshop Setup
 
 Once on Agave and within a shell, you'll need to download some files to
 follow the lesson.  Below are instructions that will be covered during
@@ -28,6 +64,25 @@ $ wget https://github.com/jyalim/agave-shell-novice/raw/gh-pages/data/data-shell
 $ unzip data-shell.zip   
 ~~~
 {: .language-bash}
+
+## Additional Help
+
+This workshop is supplemental to our [official documentation
+(http://links.asu.edu/docs)](https://asurc.atlassian.net/wiki/spaces/RC/overview). 
+
+Please note that we have office hours every Tuesday from 1:00-3:30PM
+over zoom (as well as Wednesday during the regular semester). We are
+happy to answer any and all questions during these sessions.
+
+We also host a number of workshops over the year, which are listed on
+our official documentation: [http://links.asu.edu/learn](https://asurc.atlassian.net/wiki/spaces/RC/pages/556204036/Workshops).
+
+We also have specific tutorial pages, and a small sampling are featured
+below:
+
+* [Total Beginners' Guide to Agave](https://asurc.atlassian.net/wiki/spaces/RC/pages/238420015/Total+beginners+guide+to+Agave)
+* [Using Anaconda Environments](https://asurc.atlassian.net/wiki/spaces/RC/pages/125829137/Using+anaconda+environments)
+* 
 
 > ## What does the shell look like on my computer?
 > The shell is a program that enables us to send commands to the
