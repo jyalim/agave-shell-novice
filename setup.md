@@ -84,8 +84,8 @@ We also have specific tutorial pages, and a small sampling are featured
 below:
 
 * [Total Beginners' Guide to Agave](https://asurc.atlassian.net/wiki/spaces/RC/pages/238420015/Total+beginners+guide+to+Agave)
+* [Using modules](https://asurc.atlassian.net/wiki/spaces/RC/pages/45875213/Software+Modules) 
 * [Using Anaconda Environments](https://asurc.atlassian.net/wiki/spaces/RC/pages/125829137/Using+anaconda+environments)
-* 
 
 > ## What does the shell look like on my computer?
 > The shell is a program that enables us to send commands to the
