@@ -918,6 +918,6 @@ completion**, and we will see it in many other tools as we go on.
 > ~~~
 > $ man hier
 > ~~~ 
-> {: .language-bash
+> {: .language-bash}
 > which documents the filesystem's hierarchy.
 {: .callout}
