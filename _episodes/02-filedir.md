@@ -914,8 +914,10 @@ completion**, and we will see it in many other tools as we go on.
 > ## Connecting topics
 >
 > To find out more about the Linux filesystem, refer to the manual page
+>
 > ~~~
 > $ man hier
-> ~~~ {: .language-bash
+> ~~~ 
+> {: .language-bash
 > which documents the filesystem's hierarchy.
 {: .callout}
