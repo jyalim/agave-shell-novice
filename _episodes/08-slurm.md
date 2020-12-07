@@ -275,7 +275,7 @@ example to demonstrate with the file `data-shell/signal/my_signal_processing_job
 #SBATCH -e signal_processing_job.%j.err
 #SBATCH -o signal_processing_job.%j.out
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=$USER+agave+cli+example@asu.edu
+#SBATCH --mail-user=%u+agave+cli+example@email.asu.edu
 
 # Grab node information if desired (note a lot of this is recorded by
 # slurm already)
@@ -297,7 +297,7 @@ echo STARTED: $(date)
 # Run scientific workflow
 python get_fft.py
 # Send output figure to researcher email
-mail -a fft.png -s "fft complete" "${USER}@asu.edu" <<< "SEE ATTACHED
+mail -a fft.png -s "fft complete" "${USER}@email.asu.edu" <<< "SEE ATTACHED
 # Finished
 echo FINISHED: $(date)
 ~~~
