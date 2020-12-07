@@ -1,6 +1,5 @@
 ---
 layout: lesson
-etherpad: pad.carpentries.org/agave-shell-novice
 root: .
 ---
 

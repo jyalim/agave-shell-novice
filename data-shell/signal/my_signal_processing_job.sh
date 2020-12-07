@@ -1,12 +1,12 @@
 #!/bin/bash
-#SBATCH -p serial 
-#SBATCH -q normal
+#SBATCH -p debug 
+#SBATCH -q wildfire
 #SBATCH -t 5
 #SBATCH -c 1
 #SBATCH -e signal_processing_job.%j.err
 #SBATCH -o signal_processing_job.%j.out
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=$USER+agave+cli+example@asu.edu
+#SBATCH --mail-user=%u+agave+sbatch@email.asu.edu
 
 # Grab node information if desired (note a lot of this is recorded by
 # slurm already)
@@ -28,6 +28,6 @@ echo STARTED: $(date)
 # Run scientific workflow
 python get_fft.py
 # Send output figure to researcher email
-mail -a fft.png -s "fft complete" "${USER}@asu.edu" <<< "SEE ATTACHED"
+mail -a fft.png -s "fft complete" "${USER}+agave+batchjob@email.asu.edu" <<< "SEE ATTACHED"
 # Finished
 echo FINISHED: $(date)
