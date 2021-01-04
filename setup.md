@@ -133,7 +133,7 @@ below:
 > To open Terminal, try one or both of the following:
 > * In Finder, select the Go menu, then select Utilities. Locate
 >   Terminal in the Utilities folder and open it.
-> * **Recomended** Use the Mac 'Spotlight' computer search function.
+> * **Recommended** Use the Mac 'Spotlight' computer search function.
 >   Search for: `Terminal` and press <kbd>Return</kbd>.
 >
 > To check if your machine is set up to use something other than Bash,
